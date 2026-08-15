@@ -22,6 +22,9 @@ env/
 data/*.csv
 data/*.xlsx
 
+# Include the Titanic assessment dataset
+!data/titanic.csv
+
 # Models and generated metrics
 models/*.pkl
 # models/*.joblib
