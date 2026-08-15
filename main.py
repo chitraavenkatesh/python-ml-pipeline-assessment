@@ -1,13 +1,12 @@
-"""Entry point for the machine learning pipeline.
-
-Candidate instructions:
-Implement the full pipeline orchestration here.
-"""
+from src.data_loader import load_data
 
 
-def main() -> None:
-    """Run the machine learning pipeline."""
-    raise NotImplementedError("Implement the ML pipeline entry point.")
+def main():
+    df = load_data("data/titanic.csv")
+
+    print("Dataset loaded successfully.")
+    print(df.head())
+    print(f"\nDataset shape: {df.shape}")
 
 
 if __name__ == "__main__":
