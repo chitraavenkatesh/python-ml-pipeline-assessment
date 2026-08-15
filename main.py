@@ -2,6 +2,7 @@ from src.data_loader import load_data
 from src.preprocessing import preprocess_data
 from src.train import train_model
 from src.evaluate import evaluate_model
+from src.utils import save_model
 
 
 def main():
@@ -35,6 +36,11 @@ def main():
 
     print("\nConfusion Matrix:")
     print(metrics["confusion_matrix"])
+
+    # Save trained model
+    save_model(model, "models/titanic_model.joblib")
+
+    print("\nModel saved successfully to models/titanic_model.joblib")
 
 
 if __name__ == "__main__":
