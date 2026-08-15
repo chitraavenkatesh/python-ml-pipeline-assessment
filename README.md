@@ -1,76 +1,171 @@
-# Python Machine Learning Pipeline Technical Assessment
+# Titanic Machine Learning Classification Pipeline
 
-## Objective
+## Project Overview
 
-Build a complete Machine Learning pipeline in Python that demonstrates your ability to develop, structure, and evaluate a supervised learning solution.
+This project implements an end-to-end machine learning classification pipeline in Python using the Titanic dataset.
 
-## GitHub Repository
+The objective is to predict whether a passenger survived the Titanic disaster based on passenger information such as age, sex, passenger class, fare, and family relationships.
+
+The project demonstrates data loading, data preprocessing, train/test splitting, model training, model evaluation, and model persistence using a clean modular project structure.
+
+## Machine Learning Model
+
+The classification model used in this project is a **Random Forest Classifier** from scikit-learn.
+
+The model is configured with 100 estimators and a fixed `random_state=42` to support reproducible results.
+
+## Data Preprocessing
+
+The following preprocessing steps are performed:
+
+* Duplicate rows are removed.
+* `PassengerId`, `Name`, `Ticket`, and `Cabin` are removed from the model features.
+* Missing `Age` values are filled using the median age.
+* Missing `Embarked` values are filled using the most frequent value.
+* Categorical variables such as `Sex` and `Embarked` are converted to numerical features using one-hot encoding.
+* The dataset is separated into features and the `Survived` target variable.
+* Data is split into 80% training data and 20% testing data.
+* Stratified splitting is used to preserve the target class distribution.
+* `random_state=42` is used for reproducibility.
+
+## Model Evaluation
+
+The model is evaluated using the following classification metrics:
+
+* Accuracy
+* Precision
+* Recall
+* F1-Score
+* Confusion Matrix
+
+### Results
+
+The current model produced the following results on the test dataset:
+
+| Metric    |  Score |
+| --------- | -----: |
+| Accuracy  | 0.8156 |
+| Precision | 0.7812 |
+| Recall    | 0.7246 |
+| F1-Score  | 0.7519 |
+
+Confusion Matrix:
 
 ```text
-https://github.com/Kingswithkings/python-ml-pipeline-assessment
+[[96 14]
+ [19 50]]
 ```
 
-## Assessment Requirements
-
-Your solution should include:
-
-- Load a CSV dataset.
-- Perform data cleaning and preprocessing.
-- Split the dataset into training and testing sets.
-- Train a suitable classification model.
-- Evaluate the model using:
-  - Accuracy
-  - Precision
-  - Recall
-  - F1-Score
-  - Confusion Matrix
-- Save the trained model using `joblib`.
-- Organise your code into a clean, maintainable project structure.
-- Include a `README.md` explaining:
-  - Project overview
-  - Installation
-  - Dependencies
-  - How to run the project
-  - Assumptions made
-
-## Suggested Project Structure
+## Project Structure
 
 ```text
 python-ml-pipeline-assessment/
+│
 ├── data/
+│   └── titanic.csv
+│
 ├── models/
+│   └── titanic_model.joblib
+│
 ├── notebooks/
 ├── screenshots/
+│
 ├── src/
+│   ├── __init__.py
 │   ├── data_loader.py
 │   ├── preprocessing.py
 │   ├── train.py
 │   ├── evaluate.py
 │   └── utils.py
+│
 ├── main.py
 ├── requirements.txt
 ├── README.md
-├── .gitignore
-└── LICENSE
+└── .gitignore
 ```
 
-## Evaluation Criteria
+## Requirements
 
-Your submission will be assessed based on:
+The project requires Python 3 and the following libraries:
 
-- Python programming skills
-- Code quality and organisation
-- Machine Learning knowledge
-- Data preprocessing approach
-- Model evaluation
-- Documentation
-- Git usage and commit history
-- Overall software engineering practices
+* pandas
+* numpy
+* scikit-learn
+* joblib
+* matplotlib
 
-## Submission
+## Installation
 
-Please fork this repository or clone it and submit your own GitHub repository.
+Clone the repository:
 
-Once completed, share the repository link for review.
+```bash
+git clone <repository-url>
+cd python-ml-pipeline-assessment
+```
 
-If you have any clarification questions, please ask before starting.
+Create a virtual environment:
+
+```bash
+python -m venv venv
+```
+
+Activate the environment on Linux/macOS:
+
+```bash
+source venv/bin/activate
+```
+
+On Windows:
+
+```bash
+venv\Scripts\activate
+```
+
+Install the required dependencies:
+
+```bash
+pip install -r requirements.txt
+```
+
+## Running the Pipeline
+
+Make sure the Titanic CSV dataset is available at:
+
+```text
+data/titanic.csv
+```
+
+Run the complete machine learning pipeline:
+
+```bash
+python main.py
+```
+
+The program will:
+
+1. Load the Titanic CSV dataset.
+2. Clean and preprocess the data.
+3. Split the data into training and testing sets.
+4. Train a Random Forest classification model.
+5. Evaluate the model using classification metrics.
+6. Display the confusion matrix.
+7. Save the trained model.
+
+## Saved Model
+
+The trained model is saved using `joblib` at:
+
+```text
+models/titanic_model.joblib
+```
+
+This allows the trained model to be loaded later without retraining it.
+
+## Technologies Used
+
+* Python
+* pandas
+* NumPy
+* scikit-learn
+* joblib
+* Git / GitHub
