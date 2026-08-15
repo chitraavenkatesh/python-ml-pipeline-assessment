@@ -1,6 +1,7 @@
 from src.data_loader import load_data
 from src.preprocessing import preprocess_data
 from src.train import train_model
+from src.evaluate import evaluate_model
 
 
 def main():
@@ -21,6 +22,19 @@ def main():
     model = train_model(X_train, y_train)
 
     print("\nModel training completed successfully.")
+
+    # Evaluate model
+    metrics = evaluate_model(model, X_test, y_test)
+
+    print("\nModel Evaluation")
+    print("----------------")
+    print(f"Accuracy:  {metrics['accuracy']:.4f}")
+    print(f"Precision: {metrics['precision']:.4f}")
+    print(f"Recall:    {metrics['recall']:.4f}")
+    print(f"F1-Score:  {metrics['f1_score']:.4f}")
+
+    print("\nConfusion Matrix:")
+    print(metrics["confusion_matrix"])
 
 
 if __name__ == "__main__":
